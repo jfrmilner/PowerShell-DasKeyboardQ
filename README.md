@@ -17,7 +17,7 @@ PowerShell wrapper for Das Keyboard Q API.
  ```powershell
 	. .\DasKeyboardQAPI_functions.ps1
 ```
-3. To use Cloud Signals you will be prompted for the Client ID and Client Secret from at https://q.daskeyboard.com/account. This information will be saved in C:\Users\<Username>\dasq.cred. 
+3. The first time you use Cloud Signals you will be prompted for the Client ID and Client Secret which you will need to obtain from https://q.daskeyboard.com/account. This information will then be saved to file dasq.cred at the following path C:\Users\<Username>\.
 
 ## Examples
 ### Sending Signals
