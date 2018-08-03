@@ -20,4 +20,4 @@
 *.dll binary
 *.exe binary
 
-.ps1 diff
+.ps1 text diff
