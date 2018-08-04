@@ -233,7 +233,7 @@ function Get-DasQSignal {
     param(
 		[String]
 		[ValidateSet("Local", "Cloud")]
-		$Endpoint = "Local"
+		$Endpoint = "Cloud"
 		# Select API Endpoint
     )
 	
@@ -268,7 +268,7 @@ process {
 	}#process 
 end {
 	$unixEpochStart = New-Object DateTime 1970,1,1,0,0,0,([DateTimeKind]::Utc)
-	$signals | Add-Member -Name updatedAtDateTime -MemberType ScriptProperty -Value {$unixEpochStart.AddMilliseconds($this.updatedAt)} -PassThru
+	#$signals | Add-Member -Name updatedAtDateTime -MemberType ScriptProperty -Value {$unixEpochStart.AddMilliseconds($this.updatedAt)} -PassThru
 	}#end 
 }
 
