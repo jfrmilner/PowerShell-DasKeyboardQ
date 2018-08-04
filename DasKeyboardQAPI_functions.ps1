@@ -233,7 +233,7 @@ function Get-DasQSignal {
     param(
 		[String]
 		[ValidateSet("Local", "Cloud")]
-		$Endpoint = "Cloud"
+		$Endpoint = "Local"
 		# Select API Endpoint
     )
 	
@@ -255,7 +255,7 @@ process {
 			else {
 				$headers = $null
 				$aPIEndpoint = 'http://localhost:27301/api/1.0/'
-				$signals = Invoke-RestMethod -Uri ($aPIEndpoint+'signals') -Headers $headers -Method Get
+				$signals = Invoke-RestMethod -Uri ($aPIEndpoint+'signals/shadows') -Headers $headers -Method Get
 			}
 			
 		 }
@@ -267,9 +267,9 @@ process {
 
 	}#process 
 end {
-	$unixEpochStart = New-Object DateTime 1970,1,1,0,0,0,([DateTimeKind]::Utc)
-	#$signals | Add-Member -Name updatedAtDateTime -MemberType ScriptProperty -Value {$unixEpochStart.AddMilliseconds($this.updatedAt)} -PassThru
-	}#end 
+	$script:unixEpochStart = New-Object DateTime 1970,1,1,0,0,0,([DateTimeKind]::Utc)
+	$signals | Add-Member -Name updatedAtDateTime -MemberType ScriptProperty -Value {$unixEpochStart.AddMilliseconds($this.updatedAt)} -PassThru
+	}#end
 }
 
 
