@@ -1,7 +1,7 @@
 # PowerShell - DasKeyboard Q
-PowerShell wrapper for Das Keyboard Q API.
+PowerShell wrapper for Das Keyboard Q API. Das Keyboard Q Desktop Version 2.0.0 Only
 
-## youtube Video Demo
+## YouTube Video Demo
 [![Alt text](https://img.youtube.com/vi/uPwfrKJk3NI/0.jpg)](https://www.youtube.com/watch?v=uPwfrKJk3NI)
 
 ## This repository currently contains one script
@@ -47,9 +47,9 @@ Get-DasQSignal -Endpoint Cloud | Remove-DasQSignal
  ```powershell
 Update-DasQSignal -id '1234567' -isRead $true 
 ```
-#### Update by Pipeline
+#### Update by Pipeline (Cloud Only)
  ```powershell
-Get-DasQSignal | Update-DasQSignal -isRead $true -isArchived $true -isMuted $true
+Get-DasQSignal -Endpoint Cloud | Update-DasQSignal -isRead $true -isArchived $true -isMuted $true
 ```
 
 ## Contributing
