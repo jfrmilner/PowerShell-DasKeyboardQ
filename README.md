@@ -1,5 +1,5 @@
 # PowerShell - DasKeyboard Q
-PowerShell wrapper for Das Keyboard Q API. Das Keyboard Q Desktop Version 2.0.0 Only
+PowerShell wrapper for Das Keyboard Q API.
 
 ## YouTube Video Demo
 [![Alt text](https://img.youtube.com/vi/uPwfrKJk3NI/0.jpg)](https://www.youtube.com/watch?v=uPwfrKJk3NI)
@@ -12,12 +12,13 @@ PowerShell wrapper for Das Keyboard Q API. Das Keyboard Q Desktop Version 2.0.0 
 * Date filtering on Get-DasQSignal
 
 ## Installation
-1. Download DasKeyboardQAPI_functions.ps1 to your local computer
-2. Dot-source call the script to load the functions into your current PowerShell session
+1. Download Das Keyboard Q Desktop Version 2.0.0 (https://www.daskeyboard.io/get-started/download/)
+2. Download DasKeyboardQAPI_functions.ps1 to your local computer
+3. Dot-source call the script to load the functions into your current PowerShell session
  ```powershell
 	. .\DasKeyboardQAPI_functions.ps1
 ```
-3. The first time you use Cloud Signals you will be prompted for the Client ID and Client Secret which you will need to obtain from https://q.daskeyboard.com/account. This information will then be saved to file dasq.cred at the following path C:\Users\<Username>\.
+4. The first time you use Cloud Signals you will be prompted for the Client ID and Client Secret which you will need to obtain from https://q.daskeyboard.com/account. This information will then be saved to file dasq.cred at the following path C:\Users\<Username>\.
 
 ## Examples
 ### Sending Signals
