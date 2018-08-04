@@ -293,10 +293,6 @@ function Remove-DasQSignal {
 		[parameter(Mandatory,ValueFromPipelineByPropertyName)]
 		$id
 		# Signal id
-	,
-		[parameter(ValueFromPipelineByPropertyName)]
-		$clientName
-		# Signal clientname
 	)
 
 begin {
@@ -304,7 +300,7 @@ begin {
 process {
 		
 		try {
-			if ($clientName -ne 'PublicApi') {
+			if ($id -notmatch "^-") {
 				if (!$accessToken -or $script:expiryDateTimeToken -lt (Get-Date)) {
 					Get-DasQClientCredentials
 					Get-DasQAuthToken -clientId $clientId -clientSecret $clientSecret
@@ -348,10 +344,6 @@ function Update-DasQSignal {
 		$id
 		# Signal id
 	,
-		[parameter(ValueFromPipelineByPropertyName)]
-		$clientName
-		# Signal clientname
-	,
 		[ValidateSet($true, $false)]
 		$isRead
 	,
@@ -371,20 +363,19 @@ begin 	{
 		}#begin 
 process {
 			try {
-				if ($clientName -ne 'PublicApi') {
+				if ($id -notmatch "^-") {
 					if (!$accessToken -or $script:expiryDateTimeToken -lt (Get-Date)) {
 						Get-DasQClientCredentials
 						Get-DasQAuthToken -clientId $clientId -clientSecret $clientSecret
 					}
 				$headers = @{"Authorization"="Bearer $($accessToken)"}
 				$aPIEndpoint = 'https://q.daskeyboard.com/api/1.0/'
+                Invoke-RestMethod -Uri ($aPIEndpoint+'signals/'+$id+'/status') -Method Patch -Headers $headers -Body $signalJSON -ContentType 'application/json'
 				}
 				else {
-	                Write-Error -Exception "Updating a Signal status is Cloud only"
-					$headers = $null
-					$aPIEndpoint = 'http://localhost:27301/api/1.0/'
+	                Write-Host "Only Cloud Signals can be updated, no changes have been made to this Signal"
 				}
-				Invoke-RestMethod -Uri ($aPIEndpoint+'signals/'+$id+'/status') -Method Patch -Headers $headers -Body $signalJSON -ContentType 'application/json'
+				
 			}
 			catch {
 				$Error[0].Exception
