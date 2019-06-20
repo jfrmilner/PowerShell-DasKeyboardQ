@@ -203,7 +203,8 @@ process {
             $signalHashtable.Remove("isArchived")
             $signalHashtable.Remove("isRead")
 		}
-		Invoke-RestMethod -Uri ($aPIEndpoint+'signals') -Headers $headers -Method Post -Body $signalHashtable
+		$signalJSON = $signalHashtable | ConvertTo-Json
+		Invoke-RestMethod -Uri ($aPIEndpoint+'signals') -Headers $headers -Method Post -Body $signalJSON -ContentType 'application/json'
 	 }
 	catch {
 		$Error[0].Exception
